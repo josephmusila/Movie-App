@@ -78,10 +78,11 @@ fun MovieRow(movie: Movie = getMovies()[0],
             horizontalArrangement= Arrangement.Start
         ){
             Surface (
+                color=Color.Transparent,
                 modifier = Modifier
                     .padding(12.dp)
                     .size(100.dp),
-                shadowElevation =4.dp
+//                shadowElevation =4.dp
             ){
 //                Icon(imageVector = reme,
 //                    contentDescription ="Movie Image" )
@@ -93,7 +94,7 @@ fun MovieRow(movie: Movie = getMovies()[0],
                    modifier= Modifier
                        .clip(CircleShape)
                        .fillMaxHeight(),
-                   contentScale = ContentScale.Fit,
+                   contentScale = ContentScale.FillBounds,
                    contentDescription = "Movie Image")
             }
 
