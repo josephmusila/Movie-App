@@ -37,6 +37,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.movieapp.navigation.MovieNavigation
 import com.example.movieapp.ui.theme.MovieAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -44,7 +45,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyApp {
-                MainContent()
+                MovieNavigation()
             }
         }
     }
@@ -52,54 +53,14 @@ class MainActivity : ComponentActivity() {
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MyApp(content:@Composable () -> Unit) {
     MovieAppTheme {
-       Scaffold(
-           topBar = {
-               TopAppBar(
-                   title = { Text(text = "Movies") },
-                   colors = TopAppBarDefaults
-                       .smallTopAppBarColors(Color.Magenta),
-                   )
-           },
-
-       ) {
-               innerPadding ->
-           Box(modifier = Modifier.padding(innerPadding)){
-               content()
-           }
-
-       }
+      content()
         
     }
 }
 
-@Composable
-fun MainContent(movieList:List<String> =
-                    listOf("Life After",
-                        "Love Alone",
-                        "Hate Job 4",
-                        "Lust And Religion",
-                        "Joy Riders 2",
-                        "Like It Was")) {
-
-        Column (
-            modifier=Modifier.padding(12.dp)
-        ){
-        LazyColumn {
-            items(items =  movieList){
-                MovieRow(movie = it){movie->
-                    Log.d("Movie", "MainContent: $movie")
-                }
-
-
-            }
-        }
-        }
-
-}
 //16..006
 
 @Composable
@@ -137,6 +98,6 @@ fun MovieRow(movie:String,onItemClick: (String) -> Unit) {
 @Composable
 fun GreetingPreview() {
    MyApp {
-       MainContent()
+       MovieNavigation()
    }
 }
